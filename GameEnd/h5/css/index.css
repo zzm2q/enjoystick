@@ -1,0 +1,62 @@
+.game_item {
+    display: inline-block;
+    list-style: none;
+    margin-left: 40px;
+    padding: 8px 8px 8px 8px;
+    text-align: center;
+}
+
+.game_item .text {
+    font-size: 13px;
+    padding-top: 4px;
+    padding-bottom: 4px;;
+}
+
+.game_item .name, .game_item .player_num {
+    color: #555;
+    height: 20px;
+}
+
+.right_rank .title, .right_rank .rank_list {
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+.right_rank .title {
+    color: #444;
+    font-size: 15px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.right_rank .rank_list {
+    padding-top: 2px;
+}
+
+.right_rank .rank_list ol li {
+    font-size: 14px;
+    height: 34px;
+    line-height: 34px;
+    list-style: none;
+}
+
+.right_rank .rank_list ol li .num {
+    background-color: #a52a2a;
+    color: #eee;
+    display: inline-block;
+    height: 17px;
+    width: 17px;
+    text-align: center;
+    line-height: 18px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+.right_rank .rank_list ol li .name {
+    margin-left: 13px;
+}
+
+.right_rank .rank_list ol li  .rank_trend {
+    float: right;
+    display: inline-block;
+}

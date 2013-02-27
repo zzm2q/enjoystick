@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/BBtn">
+
+        <Button
+            android:id="@+id/leftBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:height="@dimen/left_right_btn_h"
+            android:text="左"
+            android:width="@dimen/left_right_btn_w" />
+
+        <Button
+            android:id="@+id/rightBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:height="@dimen/left_right_btn_h"
+            android:text="右"
+            android:width="@dimen/left_right_btn_w" />
+
+        <Button
+            android:id="@+id/upBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/leftBtn"
+            android:layout_centerHorizontal="true"
+            android:height="@dimen/left_right_btn_h"
+            android:text="上"
+            android:width="@dimen/left_right_btn_w" />
+
+        <Button
+            android:id="@+id/downBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/upBtn"
+            android:layout_below="@+id/leftBtn"
+            android:height="@dimen/left_right_btn_h"
+            android:text="下"
+            android:width="@dimen/left_right_btn_w" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/ABtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="A"
+        android:width="@dimen/ABBtnWidth" />
+
+    <Button
+        android:id="@+id/BBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/ABtn"
+        android:text="B"
+        android:width="@dimen/ABBtnWidth" />
+
+</RelativeLayout>

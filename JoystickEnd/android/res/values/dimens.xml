@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font">30dip<!--  --></dimen>
+    <dimen name="ABBtnWidth">110dip<!--  --></dimen>
+    <dimen name="left_right_btn_w">100dip</dimen>
+    <dimen name="left_right_btn_h">80dip</dimen>
+</resources>

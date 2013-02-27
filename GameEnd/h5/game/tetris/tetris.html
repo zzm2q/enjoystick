@@ -1,0 +1,131 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="../../css/frame.css">
+    <link rel="stylesheet" type="text/css" href="css/tetris.css">
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="../../lib/json.js"></script>
+    <script type="text/javascript" src="../../enjoystick.js"></script>
+    <script type="text/javascript" src="js/Tetris.js"></script>
+    <script type="text/javascript">
+        $(function() {
+
+
+            var game1 = new Tetris("play_one_game");
+            var game2 = new Tetris("play_tow_game");
+
+            $("#game_start_btn").click(function() {
+                game1.init(20, 10);
+                game2.init(20, 10);
+                game1.start();
+                game2.start();
+                $("#game_start_btn").hide();
+                $("#play_one_tips").hide();
+                $("#play_two_tips").hide();
+                ES.setState("play");
+            });
+
+            game1.addEventListener('over', function(e) {
+                $("#play_one_tips").text("Game Over!").show();
+            });
+
+            game2.addEventListener('over', function(e) {
+                $("#play_two_tips").text("Game Over!").show();
+            });
+
+            ES.addEventListener('playerJoin', function(e) {
+                if(!game1.playerKey) {
+                    game1.playerKey = e.player;
+                    $("#play_one_tips").text("已连接 " + e.player).show();
+                }
+                else if(!game2.playerKey) {
+                    game2.playerKey = e.player;
+                    $("#play_two_tips").text("已连接 " + e.player).show();
+                } else {
+                    console.log("too many player");
+                }
+            });
+
+            ES.addEventListener('playerExit', function(e) {
+                if(e.player == game1.playerKey) {
+                    game1.playerKey = null;
+                    $("#play_one_tips").text("连接中...").show();
+                }
+                if(e.player == game2.playerKey) {
+                    game2.playerKey = null;
+                    $("#play_two_tips").text("连接中...").show();
+                }
+            });
+
+            ES.addEventListener('playerMessage', function(e) {
+                if(e.player === game1.playerKey) {
+                    game1.executeCmd(e.msg);
+                } else if(e.player == game2.playerKey) {
+                    game2.executeCmd(e.msg);
+                }
+            });
+
+            ES.addEventListener('gameInit', function(e) {
+                console.log(e.id);
+                $("#qrCodeImg")[0].src = 'http://chart.apis.google.com/chart?chs=200x200&cht=qr&chld=L&chl=' + e.id;
+            });
+
+            ES.init();
+        });
+    </script>
+</head>
+<body>
+<div class="frame_wrap">
+    <!--
+    -->
+    <div class="nav"><div class="nav_inner">EnJoyStick</div></div>
+    <div class="frame_left">
+        <div class="game_area">
+            <h2>猛拼俄罗斯方块</h2>
+            <div id="tetris">
+                <div class="tetris_inner">
+                    <!-- -->
+                    <div class="tetris_vs_info">
+                        <div class="tetris_play_one_info">
+                            <span class="player_name">Play 1</span>
+                            <span class="player_hp"><span id="play_1_hp" class="current_hp">&nbsp;</span></span>
+                        </div>
+                        <div class="tetris_play_tow_info">
+                            <span class="player_hp"><span id="play_2_hp" class="current_hp">&nbsp;</span></span>
+                            <span class="player_name">Play 2</span>
+                        </div>
+                        <div class="tetris_vs_font">VS</div>
+                    </div>
+                    <div class="tetris_game">
+                        <div id="play_one_game" class="player_one_game">
+
+                        </div>
+                        <div id="play_tow_game" class="player_tow_game">
+
+                        </div>
+                        <div id="game_start_btn" class="start_btn">开 始</div>
+                        <div id="play_one_tips">连接中...</div>
+                        <div id="play_two_tips">连接中...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="frame_right">
+        <div class="qr_code">
+            <div>
+                扫描二维码连接手机手柄
+            </div>
+            <img id="qrCodeImg" class="qr_code_img" src="http://chart.apis.google.com/chart?chs=200x200&cht=qr&chld=L&chl=error" width="200" height="200" style="float: left;" alt="" >
+        </div>
+        <div id="log" style="width: 100%;font-size: 12px; height: 400px; overflow-y: auto;">
+
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+</body>
+</html>
